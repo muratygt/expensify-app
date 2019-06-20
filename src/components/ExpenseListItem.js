@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
+import moment from 'moment';
+import numeral from 'numeral';
 
 const ExpenseItemList = ({ id, description, amount, createdAt }) => (
 	<div>
@@ -8,9 +10,10 @@ const ExpenseItemList = ({ id, description, amount, createdAt }) => (
 			<h3>{description}</h3>
 		</Link>
 		<p>
-			{amount} - {createdAt}
+			{numeral(amount / 100).format('$0,0.00')}
+			-
+			{moment(createdAt).format('MMMM Do, YYYY')}
 		</p>
 	</div>
 );
-//If you do not want anything from state and just want to connect and get access to dispatch we do not need to write mapStateToProps inside of the connect func.
 export default ExpenseItemList;
