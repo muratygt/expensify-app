@@ -3,7 +3,6 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/initialize';
 
-//So the goal is to take these four state values and make them visible inside the EditExpensePage with constructor func.
 class ExpenseForm extends Component {
 	constructor(props) {
 		super(props);
@@ -42,15 +41,13 @@ class ExpenseForm extends Component {
 	onSubmit = (e) => {
 		e.preventDefault();
 		if (!this.state.description || !this.state.amount) {
-			//Set error state equal to 'Please provide description and amount.'
 			this.setState(() => ({ error: 'Please provide description and amount.' }));
 		} else {
-			//Clear the error
 			this.setState(() => ({ error: '' }));
 			this.props.onSubmit({
 				description: this.state.description,
-				amount: parseFloat(this.state.amount, 10) * 100, //Converts text to number
-				createdAt: this.state.createdAt.valueOf(), //Picks the date value
+				amount: parseFloat(this.state.amount, 10) * 100,
+				createdAt: this.state.createdAt.valueOf(),
 				note: this.state.note
 			});
 		}
@@ -72,9 +69,9 @@ class ExpenseForm extends Component {
 						date={this.state.createdAt}
 						onDateChange={this.onDateChange}
 						focused={this.state.calendarFocused}
-						onFocusChange={this.onFocusChange} //acts after the date picked
-						numberOfMonths={1} //Only puts one month
-						isOutsideRange={() => false} //Allows to pick a date in the past
+						onFocusChange={this.onFocusChange}
+						numberOfMonths={1}
+						isOutsideRange={() => false}
 					/>
 					<textarea
 						placeholder="Add a note for your expense"

@@ -14,14 +14,10 @@ test('should render ExpenseForm with expenses data', () => {
 	expect(wrapper).toMatchSnapshot();
 });
 
-//Simulating the Form Submission event
-
 test('should render error for invalid form submission', () => {
 	const wrapper = shallow(<ExpenseForm />);
 	expect(wrapper).toMatchSnapshot();
-	//Faking preventDefault by passing as second argument
 	wrapper.find('form').simulate('submit', { preventDefault: () => {} });
-	//Expect the State
 	expect(wrapper.state('error').length).toBeGreaterThan(0);
 	expect(wrapper).toMatchSnapshot();
 });
@@ -54,13 +50,10 @@ test('should set amount if invalid input', () => {
 	expect(wrapper.state('amount')).toBe('');
 });
 
-//Simulating Form Submission with Valid Data with Spy
 test('should call onSubmit prop for valid form submission', () => {
-	//We create a fake spy function and call it.
 	const onSubmitSpy = jest.fn();
-	//Render Component with Spy
 	const wrapper = shallow(<ExpenseForm expense={expenses[0]} onSubmit={onSubmitSpy} />);
-	//Simulate Form Submission
+
 	wrapper.find('form').simulate('submit', { preventDefault: () => {} });
 	expect(wrapper.state('error')).toBe('');
 	expect(onSubmitSpy).toHaveBeenLastCalledWith({
@@ -71,7 +64,6 @@ test('should call onSubmit prop for valid form submission', () => {
 	});
 });
 
-//Calling Props in SingleDatePicker Component
 test('should set new date on date change', () => {
 	const now = moment();
 	const wrapper = shallow(<ExpenseForm />);

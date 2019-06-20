@@ -28,9 +28,7 @@ const mapDispatchToProps = (dispatch, props) => ({
 	removeExpense: (data) => dispatch(removeExpense(data))
 });
 
-//We can access the specific item with the id inside the props.
 const mapStateToProps = (state, props) => ({
-	//We got all the current props by passing props inside of the mapStateToProps. We also want to add another prop which is expenses array.
 	expense: state.expenses.find((expense) => expense.id === props.match.params.id)
 });
 

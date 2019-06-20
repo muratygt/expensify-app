@@ -1,5 +1,3 @@
-//We will tes the component without connecting to store. So we will pass in our own data from fixtures
-
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ExpenseList } from '../../components/ExpenseList';
